@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import com.example.usermanagement.model.User;
 
 public class SharedPrefManager {
-
     private static String SHARED_PREF_NAME = "userManagement";
     private SharedPreferences sharedPreferences;
     private Context context;
@@ -26,16 +25,16 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public boolean isLoggedIn(){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean("logged",false);
-    }
-
     public User getUser(){
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
         return new User(sharedPreferences.getInt("id",-1),
                 sharedPreferences.getString("username",null),
                 sharedPreferences.getString("email",null));
+    }
+
+    public boolean isLoggedIn(){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("logged",false);
     }
 
     public void logout(){
